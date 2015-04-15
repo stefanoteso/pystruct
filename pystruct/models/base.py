@@ -62,9 +62,9 @@ class StructuredModel(object):
             return np.sum(self.class_weight[y] * (y != y_hat))
         return np.sum(y != y_hat)
 
-    def batch_loss(self, Y, Y_hat):
+    def batch_loss(self, X, Y, Y_hat):
         # default implementation of batch loss
-        return [self.loss(y, y_hat) for y, y_hat in zip(Y, Y_hat)]
+        return [self.loss(x, y, y_hat) for x, y, y_hat in zip(X, Y, Y_hat)]
 
     def max_loss(self, y):
         # maximum possible los on y for macro averages

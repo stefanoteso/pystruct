@@ -355,7 +355,7 @@ class OneSlackSSVM(BaseSSVM):
             djoint_feature = (joint_feature_gt
                               - self.model.batch_joint_feature(X, Y_hat)) / len(X)
 
-        loss_mean = np.mean(self.model.batch_loss(Y, Y_hat))
+        loss_mean = np.mean(self.model.batch_loss(X, Y, Y_hat))
 
         violation = loss_mean - np.dot(self.w, djoint_feature)
         if check and self._check_bad_constraint(

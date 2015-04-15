@@ -74,11 +74,11 @@ def find_constraint(model, x, y, w, y_hat=None, relaxed=True,
         else:
             delta_joint_feature += joint_feature(x, y)
 
-    if isinstance(y_hat, tuple):
-        # continuous label
-        loss = model.continuous_loss(y, y_hat[0])
-    else:
-        loss = model.loss(y, y_hat)
+#    if isinstance(y_hat, tuple):
+#        # continuous label
+#        loss = model.continuous_loss(x, y, y_hat[0])
+#    else:
+    loss = model.loss(x, y, y_hat)
     slack = max(loss - np.dot(w, delta_joint_feature), 0)
     return y_hat, delta_joint_feature, slack, loss
 
